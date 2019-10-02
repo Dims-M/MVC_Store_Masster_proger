@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28922.388
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVC_Store_Masster_proger", "MVC_Store_Masster_proger.csproj", "{C455F882-247F-4CA4-8637-8DBCA00EB739}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C455F882-247F-4CA4-8637-8DBCA00EB739}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C455F882-247F-4CA4-8637-8DBCA00EB739}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C455F882-247F-4CA4-8637-8DBCA00EB739}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C455F882-247F-4CA4-8637-8DBCA00EB739}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {824BB094-E613-4850-9CC9-B3D7A3F24244}
+	EndGlobalSection
+EndGlobal
