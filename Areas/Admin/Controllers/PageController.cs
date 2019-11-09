@@ -8,6 +8,9 @@ using System.Web.Mvc;
 
 namespace MVC_Store_Masster_proger.Areas.Admin.Controllers
 {
+    /// <summary>
+    /// Контолер. Где будут отображатся все страници сайта
+    /// </summary>
     public class PagesController : Controller
     {
         // GET: Admin/Page
@@ -26,5 +29,14 @@ namespace MVC_Store_Masster_proger.Areas.Admin.Controllers
 
             return View(pageList);
         }
+
+        //Медо редактирования страницы
+        // GET: Admin/Page/EditPage
+        public ActionResult EditPage()
+        {
+
+            return View();
+        }
+
     }
 }
