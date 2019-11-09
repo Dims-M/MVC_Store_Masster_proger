@@ -11,6 +11,9 @@ namespace MVC_Store_Masster_proger.Models.Data
     /// </summary>
     public class Db : DbContext
     {
-
+        /// <summary>
+        /// Связь между таблицей бд и моделью PageDTO
+        /// </summary>
+        public DbSet<PageDTO> Pages { get; set; }
     }
 }

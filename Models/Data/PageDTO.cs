@@ -8,9 +8,9 @@ using System.Web;
 namespace MVC_Store_Masster_proger.Models.Data
 {
     /// <summary>
-    /// Работа с базой данных Page
+    /// Работа с базой данных Page. Будет извлекать данные из бд. и отправлять их во вьюху PageVM
     /// </summary>
-     [Table("tblPages")]
+    [Table("tblPages")]
     public class PageDTO
     {
         [Key]

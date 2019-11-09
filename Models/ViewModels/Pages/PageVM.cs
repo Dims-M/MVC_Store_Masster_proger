@@ -13,8 +13,9 @@ namespace MVC_Store_Masster_proger.Models.ViewModels.Pages
     public class PageVM
     {
         //без параметров
-        public PageVM(PageDTO row)
-        { }
+        public PageVM()
+        {
+        }
 
             //Консруктор примимающий класс PagesDTO. Получаем данные из БД
             public PageVM(PageDTO row )

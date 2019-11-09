@@ -1,0 +1,59 @@
+﻿@model IEnumerable<MVC_Store_Masster_proger.Models.ViewModels.Pages.PageVM>
+
+@{
+    ViewBag.Title = "Страницы пользователей";
+}
+
+    <h2>Страницы пользователей из БД <br> @DateTime.Now</h2>
+
+<p>
+    @Html.ActionLink("Создать новую страницу Пользователя ", "AddPage","", new {@class="btn btn-success" }) @*//кнопка*@ 
+</p>
+<table class="table"> @*//Выводится заголовки таблицы*@ 
+    <tr>
+        <th>
+            Title
+            @*@Html.DisplayNameFor(model => model.Title)*@
+        </th>
+        <th>
+            Slug
+            @*@Html.DisplayNameFor(model => model.Slug)*@
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.Body)*@
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.Sorting)*@
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HasSidebar)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) { @*//выводятся сами данные из бд*@
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Slug)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Body)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sorting)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.HasSidebar)
+        </td>
+        <td>
+            @Html.ActionLink("Редактировать страницу", "EditPage", new { id=item.Id }) |
+            @Html.ActionLink("Подробности", "PageDetails", new { id=item.Id }) |
+            @Html.ActionLink("Удалить страницу", "DeletePage", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
