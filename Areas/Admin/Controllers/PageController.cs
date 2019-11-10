@@ -30,12 +30,86 @@ namespace MVC_Store_Masster_proger.Areas.Admin.Controllers
             return View(pageList);
         }
 
-        //Медо редактирования страницы
+        //Метод редактирования страницы
         // GET: Admin/Page/EditPage
         public ActionResult EditPage()
         {
 
             return View();
+        }
+
+        //Метод создания страницы
+        // GET: Admin/Page/AddPage
+        [HttpGet]
+        public ActionResult AddPage()
+        {
+
+            return View();
+        }
+
+        // POST: Admin/Page/AddPage
+        [HttpPost]
+        public ActionResult AddPage(PageVM model)
+        {
+
+            //проверка моделди на коректность заполнения от рользователя
+            if (!ModelState.IsValid) // если пришли не фалидные значения.
+            {
+                return View(model); //то возврат вьюхи
+            }
+
+            using (Db db = new Db()) // открытие бд
+            {
+                //переменная для крадкого описания страницы(slug)
+                string slug;
+
+                // Класс для работы с бд PageDTO
+                PageDTO dto = new PageDTO();
+
+                //Присвоим заголовок  модели. Все названия страниц. Пишем с большой буквы
+                dto.Title = model.Title.ToUpper();
+
+                //убедится что заголовок(имя страници является уникальным) и описание существует? И присваеваем модели для записи в бд
+                if (string.IsNullOrWhiteSpace(model.Slug)) // если model.Slug имеет пустое значение 
+                {
+                    slug = model.Title.Replace(" ", "-").ToLower(); //присваивае с заменой всех пробелов на  дефиса
+                }
+                else //  если в моделе model.Slug что то имеется. То все равно добавляем дефисы
+                {
+                    slug = model.Title.Replace(" ", "-").ToLower();
+                }
+
+                //убеждаемся в уникальности заголовка
+                //делаем запрос к бд. Ппроходим по все заголовка в бд. И ищем совпадения с пришедщоой моделью. Которую нам отправил пользователь из формы
+                if (db.Pages.Any(x=> x.Title == model.Title))
+                {
+                    ModelState.AddModelError("", "Этот Title уже присуствует в БД "); //Создаем ошибку в сосоянии модели
+                    return View(model); // отправляем пользователю на дороботку
+                }
+
+                //проверяем на уникальность
+                else if (db.Pages.Any(x => x.Slug == model.Slug)) 
+                {
+                    ModelState.AddModelError("", "Этот Slug уже присуствует в БД "); //Создаем ошибку в сосоянии модели
+                    return View(model); // отправляем пользователю на дороботку
+                }
+
+                // присвоиваем полученные даанные из модели
+                dto.Slug = slug;
+                dto.Body = model.Body;
+                dto.HasSidebar = model.HasSidebar;
+                dto.Sorting = 100; //это значит что будетт добавленно в конец списка
+
+                //сохраняем в бд
+                db.Pages.Add(dto);
+                db.SaveChanges();
+            }
+
+            //передаем сообщение о записи в бд
+            TempData["SM"] = "Данные удачно добавлены";
+
+            //переадресация  странцы. на главную страницу индекса
+            return RedirectToAction("Index");
         }
 
     }

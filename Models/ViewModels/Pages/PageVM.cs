@@ -39,6 +39,7 @@ namespace MVC_Store_Masster_proger.Models.ViewModels.Pages
         [StringLength(int.MaxValue, MinimumLength = 3)]
         public string Body { get; set; }
         public int Sorting { get; set; }
+        [Display(Name = "Боковая панель")]
         public bool HasSidebar { get; set; }
 
     }

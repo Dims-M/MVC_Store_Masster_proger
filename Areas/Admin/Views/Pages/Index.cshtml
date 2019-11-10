@@ -3,13 +3,22 @@
 @{
     ViewBag.Title = "Страницы пользователей";
 }
+@*// если временная переменная TempData["SM"] из страници с бодавление новой странице не пустая.*@
+@if (TempData["SM"] != null)
 
-    <h2>Страницы пользователей из БД <br> @DateTime.Now</h2>
+{
+    <div class="alert alert-success">
+        @TempData["SM"]
+    </div>
+}
+
+<h2>Страницы пользователей из БД <br> @DateTime.Now</h2>
 
 <p>
-    @Html.ActionLink("Создать новую страницу Пользователя ", "AddPage","", new {@class="btn btn-success" }) @*//кнопка*@ 
+    @Html.ActionLink("Создать новую страницу Пользователя ", "AddPage", "", new { @class = "btn btn-success" }) @*//кнопка*@
 </p>
-<table class="table"> @*//Выводится заголовки таблицы*@ 
+<table class="table">
+    @*//Выводится заголовки таблицы*@
     <tr>
         <th>
             Title
@@ -31,7 +40,8 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) { @*//выводятся сами данные из бд*@
+    @foreach (var item in Model)
+    {@*//выводятся сами данные из бд*@
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Title)
@@ -40,18 +50,18 @@
             @Html.DisplayFor(modelItem => item.Slug)
         </td>
         @*<td>
-            @Html.DisplayFor(modelItem => item.Body)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Sorting)
-        </td>*@
+                @Html.DisplayFor(modelItem => item.Body)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sorting)
+            </td>*@
         <td>
             @Html.DisplayFor(modelItem => item.HasSidebar)
         </td>
         <td>
-            @Html.ActionLink("Редактировать страницу", "EditPage", new { id=item.Id }) |
-            @Html.ActionLink("Подробности", "PageDetails", new { id=item.Id }) |
-            @Html.ActionLink("Удалить страницу", "DeletePage", new { id=item.Id })
+            @Html.ActionLink("Редактировать страницу", "EditPage", new { id = item.Id }) |
+            @Html.ActionLink("Подробности", "PageDetails", new { id = item.Id }) |
+            @Html.ActionLink("Удалить страницу", "DeletePage", new { id = item.Id })
         </td>
     </tr>
 }
