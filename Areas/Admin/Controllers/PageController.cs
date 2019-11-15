@@ -30,13 +30,13 @@ namespace MVC_Store_Masster_proger.Areas.Admin.Controllers
             return View(pageList);
         }
 
-        //Метод редактирования страницы
-        // GET: Admin/Page/EditPage
-        public ActionResult EditPage()
-        {
+        ////Метод редактирования страницы
+        //// GET: Admin/Page/EditPage
+        //public ActionResult EditPage()
+        //{
 
-            return View();
-        }
+        //    return View();
+        //}
 
         //Метод создания страницы
         // GET: Admin/Page/AddPage
@@ -112,5 +112,36 @@ namespace MVC_Store_Masster_proger.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
+        //Admin/Pages
+        /// <summary>
+        /// Редактирование страницы
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]  //дудем отправлять пользователю в браузер
+        public ActionResult EditPage( int id)
+        {
+
+            //обьявляем моднль страницы.(заполняетя будет из бд)
+            PageVM model;
+
+            using (Db db = new Db()) // соединение с бд
+            {
+                //получаем данные из формы клиента и заполняем моднл страницы
+                PageDTO dto = db.Pages.Find(id); // получаем данную страницу по айди из бд
+
+                //проверяем. доступна ли страница
+                if (dto == null)
+                {
+                    return Content("Данная страница не доступна");
+                }
+
+                //инициализируем модель данными
+                model = new PageVM(dto);
+            }
+
+            //отправляем в браузер
+            return View(model);
+        }
+         
     }
 }
