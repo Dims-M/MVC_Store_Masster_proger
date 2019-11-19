@@ -117,7 +117,7 @@ namespace MVC_Store_Masster_proger.Areas.Admin.Controllers
         /// Редактирование страницы
         /// </summary>
         /// <returns></returns>
-        [HttpGet]  //дудем отправлять пользователю в браузер
+        [HttpGet]  //будем отправлять пользователю в браузер
         public ActionResult EditPage( int id)
         {
 
