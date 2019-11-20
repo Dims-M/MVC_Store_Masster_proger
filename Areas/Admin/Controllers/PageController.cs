@@ -52,7 +52,7 @@ namespace MVC_Store_Masster_proger.Areas.Admin.Controllers
         public ActionResult AddPage(PageVM model)
         {
 
-            //проверка моделди на коректность заполнения от рользователя
+            //проверка модели на коректность заполнения от пользователя
             if (!ModelState.IsValid) // если пришли не фалидные значения.
             {
                 return View(model); //то возврат вьюхи
@@ -117,7 +117,7 @@ namespace MVC_Store_Masster_proger.Areas.Admin.Controllers
         /// Редактирование страницы
         /// </summary>
         /// <returns></returns>
-        [HttpGet]  //будем отправлять пользователю в браузер
+        [HttpGet]  //будем отправлять пользователю в браузер. с нужной id страници.
         public ActionResult EditPage( int id)
         {
 
@@ -129,13 +129,13 @@ namespace MVC_Store_Masster_proger.Areas.Admin.Controllers
                 //получаем данные из формы клиента и заполняем моднл страницы
                 PageDTO dto = db.Pages.Find(id); // получаем данную страницу по айди из бд
 
-                //проверяем. доступна ли страница
+                //проверяем. доступна ли страница. Есть ли такая в наличии
                 if (dto == null)
                 {
                     return Content("Данная страница не доступна");
                 }
 
-                //инициализируем модель данными
+                //инициализируем модель данными. Заполняем страницу модели данными из бд
                 model = new PageVM(dto);
             }
 
