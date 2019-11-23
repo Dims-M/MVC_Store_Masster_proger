@@ -121,18 +121,18 @@ namespace MVC_Store_Masster_proger.Areas.Admin.Controllers
         public ActionResult EditPage( int id)
         {
 
-            //обьявляем моднль страницы.(заполняетя будет из бд)
+            //обьявляем модель страницы.(заполняетя будет из бд)
             PageVM model;
 
             using (Db db = new Db()) // соединение с бд
             {
-                //получаем данные из формы клиента и заполняем моднл страницы
+                //получаем данные из формы клиента и заполняем модель страницы
                 PageDTO dto = db.Pages.Find(id); // получаем данную страницу по айди из бд
 
                 //проверяем. доступна ли страница. Есть ли такая в наличии
                 if (dto == null)
                 {
-                    return Content("Данная страница не доступна");
+                    return Content("Данная страница удалена или не доступна");
                 }
 
                 //инициализируем модель данными. Заполняем страницу модели данными из бд
@@ -142,6 +142,8 @@ namespace MVC_Store_Masster_proger.Areas.Admin.Controllers
             //отправляем в браузер
             return View(model);
         }
+
+
          
     }
 }
